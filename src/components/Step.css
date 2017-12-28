@@ -1,0 +1,22 @@
+.step {
+  display: flex;
+}
+
+    .bullet {
+      border-radius: 50%;
+      background-color: blue;
+    }
+
+      .bulletBig {
+        min-width: 50px;
+        max-width: 50px;
+        min-height: 50px;
+        max-height: 50px;
+      }
+
+      .bulletSmall {
+        min-width: 25px;
+        max-width: 25px;
+        min-height: 25px;
+        max-height: 25px;
+      }
