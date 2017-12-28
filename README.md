@@ -8,11 +8,11 @@
 
 ## Afficher la timeline avec les entrées en stock
 
+get the data with the event 'entered_store'
 ```
-<!-- get the data with the event 'entered_store' -->
 const mainData = (data) => {
   return data
-    .filter(el => el.event === 'entered_store')
+    .filter(el => el.event === 'entered_store');
 }
 ```
 
@@ -34,6 +34,6 @@ each bullet has a data-city attribute corresponding to the city of the step. Ret
 ```
 function getAllEvents() {
   let city = this.getAttribute('data-city');
-  return data.filter(el => el.location === city)
+  return data.filter(el => el.location === city);
 };
 ```
