@@ -44,7 +44,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="data-logistic">
+      <div className='data-logistic'>
         {this.renderSteps()}
       </div>
     )

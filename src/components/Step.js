@@ -7,7 +7,7 @@ class Step extends Component {
   }
   
   formatDate = (date) => {
-    return `${date.substring(0,10)} à ${date.substring(11,13)}h${date.substring(14,16)}`
+    return `${date.substring(0,10).replace(/-/g, '/')} à ${date.substring(11,16).replace(/:/, 'h')}`
   };
   
   toggleOpen = () => {
@@ -24,12 +24,11 @@ class Step extends Component {
     
     return dataFiltered.map( (stepFiltered,id) => {
       return (
-        <div className={`step step${this.state.open ? 'Main' : 'Details'}`} key={id}>
-          <div className={`bullet bullet${this.state.open ? 'Big' : 'Small'}`}
-                onClick={this.toggleOpen}></div>
-          <div className='description'>
-            {this.formatDate(stepFiltered.timestamp)} : Arrivée en {this.props.number === 0 ? 'entrepôt' : ''} : {stepFiltered.location}
-          </div>
+        <div className={`step${this.state.open ? 'Main' : 'Details'}`} key={id}>
+            <div className={`bullet bullet${this.state.open ? 'Small' : 'Big'}`} onClick={this.toggleOpen}></div>
+            <div className='description'>
+              {this.formatDate(stepFiltered.timestamp)} : Arrivée en {this.props.number === 0 ? 'entrepôt' : ''} : {stepFiltered.location}
+            </div>
         </div>
       )
     })

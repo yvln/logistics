@@ -1,22 +1,32 @@
 .step {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px 0;
 }
 
-    .bullet {
-      border-radius: 50%;
-      background-color: blue;
+    .stepMain, .stepDetails {
+      display: flex;
+      align-items: center;
     }
 
-      .bulletBig {
-        min-width: 50px;
-        max-width: 50px;
-        min-height: 50px;
-        max-height: 50px;
-      }
+        .bullet {
+          border-radius: 50%;
+          background-color: rgb(77,136,229);
+        }
 
-      .bulletSmall {
-        min-width: 25px;
-        max-width: 25px;
-        min-height: 25px;
-        max-height: 25px;
-      }
+          .bulletBig {
+            margin: 10px;
+            min-width: 26px;
+            max-width: 26px;
+            min-height: 26px;
+            max-height: 26px;
+          }
+
+          .bulletSmall {
+            margin: 15px;
+            min-width: 16px;
+            max-width: 16px;
+            min-height: 16px;
+            max-height: 16px;
+          }
