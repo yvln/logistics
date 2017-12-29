@@ -17,8 +17,8 @@ class Step extends Component {
   
   renderStepsCity = (bool) => {
     const { dataCity, number } = this.props;
-    console.log(dataCity);
     const { open } = this.state;
+
     return dataCity.map( (oneEvent,id) => {
       return (
         <div className='stepLine' key={id}>
