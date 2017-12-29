@@ -16,6 +16,7 @@
         }
 
           .bulletBig {
+            transition: .3s;
             margin: 10px;
             min-width: 26px;
             max-width: 26px;
@@ -24,6 +25,7 @@
           }
 
           .bulletSmall {
+            transition: .3s;
             margin: 15px;
             min-width: 16px;
             max-width: 16px;

@@ -12,34 +12,44 @@ class App extends Component {
       { 'event': 'scan', 'timestamp': '01-12-2017T13:01', 'location': 'Marseille' },
       { 'event': 'entered_store', 'timestamp': '01-12-2017T12:01', 'location': 'Marseille' },
     ],
-    listCities: [],
+    dataByCity: {
+      listCities:[],
+      dataOrganized: {},
+    },
   }
   
   componentDidMount() {
     // API call, setState response in this.state.data
     // then setState listCities
-    const cities = this.state.data.reduce((acc, curr) => {
-      if (acc.indexOf(curr.location) === -1) {
-        acc.push(curr.location)
+    const dataByCity = this.state.data.reduce((acc, curr) => {
+      const val = curr.location;
+      if (!acc.dataOrganized[val]) {
+        acc.listCities.push(val)
+        acc.dataOrganized[val] = [];
       }
+      acc.dataOrganized[val].push(curr);
       return acc;
-    }, []);
+    }, {
+      listCities:[],
+      dataOrganized: {},
+    });
     this.setState({
-      listCities: cities
+      dataByCity: dataByCity
     })
   }
   
   renderSteps = () => {
-    return this.state.listCities.map( (city,id) => {
-      return (
-        <div className='stepContainer' key={id}>
-          <Step
-            number={(this.state.listCities.length-1)-id}
-            dataCity={this.state.data.filter(step => step.location === city)}
-            />
-        </div>
-      )
-    })
+    const { dataByCity } = this.state;
+      return dataByCity.listCities.map( (city,id) => {
+        return (
+          <div className='stepContainer' key={id}>
+            <Step
+              number={(dataByCity.listCities.length-1)-id}
+              dataCity={dataByCity.dataOrganized[city]}
+              />
+          </div>
+        )
+      })
   };
   
   render() {

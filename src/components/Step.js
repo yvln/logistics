@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import './Step.css';
 
 class Step extends Component {
@@ -15,34 +16,46 @@ class Step extends Component {
   };
   
   renderStepsCity = (bool) => {
-    let dataFiltered = null;
-    if (!bool) {
-      dataFiltered = this.props.dataCity.filter(step => step.event === 'entered_store');
-    } else {
-      dataFiltered = this.props.dataCity;
-    }
-    
-    return dataFiltered.map( (stepFiltered,id) => {
+    const { dataCity, number } = this.props;
+    console.log(dataCity);
+    const { open } = this.state;
+    return dataCity.map( (oneEvent,id) => {
       return (
-        <div className={`step${this.state.open ? 'Main' : 'Details'}`} key={id}>
-            <div className={`bullet bullet${this.state.open ? 'Small' : 'Big'}`} onClick={this.toggleOpen}></div>
-            <div className='description'>
-              {this.formatDate(stepFiltered.timestamp)} : Arrivée en {this.props.number === 0 ? 'entrepôt' : ''} : {stepFiltered.location}
+        <div className='stepLine' key={id}>
+          {oneEvent.event === 'entered_store' && !open && 
+            <div className='stepMain'>
+              <div className='bullet bulletBig' onClick={this.toggleOpen}></div>
+              <div className='description'>
+                {this.formatDate(oneEvent.timestamp)} : Arrivée en {number === 0 ? 'entrepôt' : 'centre de logistique / boutique'} : {oneEvent.location}
+              </div>
             </div>
+          }
+          {open && 
+            <div className='stepDetails'>
+              <div className='bullet bulletSmall' onClick={this.toggleOpen}></div>
+              <div className='description'>
+                {this.formatDate(oneEvent.timestamp)} : Arrivée en {number === 0 ? 'entrepôt' : 'centre de logistique / boutique'} : {oneEvent.location}
+              </div>
+            </div>
+          }
         </div>
       )
     })
   }
   
   render() {
+    const { open } = this.state;
     return (
       <div className='step'>
-        {this.renderStepsCity(this.state.open)}
+        {this.renderStepsCity(open)}
       </div>
     )
   };
 }
 
-
+Step.propTypes = {
+  dataCity: PropTypes.array.isRequired,
+  number: PropTypes.number.isRequired,
+};
 
 export default Step;
